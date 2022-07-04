@@ -10,7 +10,7 @@
               <p><strong>Simulações: </strong>0</p>
               <p><strong>Valor Total: </strong>R$ 0,00</p>
 
-              <a href="/" title="Ir para página inicial" class="btn btn-green">Sair</a>
+              <a href="/logout" title="Ir para página inicial" class="btn btn-green">Sair</a>
             </div>
           </div>
         </div>

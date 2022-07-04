@@ -28,14 +28,20 @@ class UserController extends Controller
         if ($user) // se verdade existe um usuário com essas informações
         {
             Auth::login($user); //efetuando a operação de autenticação
-            dd('Você esta logado');
+            return view('dados');
         } else {
-            dd('Você esta logado naaaaaaaaaao');
+            dd('Dados incorretos');
         }
     }
 
     public function logout(Request $request) {
-        
-
+        $request -> session() -> forget('email');
+        $request -> session() -> forget('cpf1');
+        $request -> session() -> forget('cpf2');
+        $request -> session() -> forget('cpf3');
+        $request -> session() -> forget('cpf4');
+        return view('welcome');
     }
+
+
 }

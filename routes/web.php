@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,5 +19,18 @@ Route::get('/', [UserController::class, 'index'])->name('home.login');
 
 Route::post('/login', [UserController::class, 'login'])->name('login');
 
-Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect()->action('App\Http\Controllers\UserController@index');;
+});
 
+// Route::group(['middleware' => ['auth']], function() {
+//     Route::post('/login', [UserController::class, 'login'])->name('login');
+
+//     Route::get('/logout',function(){
+//         Auth::logout();
+//         return redirect()->action('/');
+//     });
+
+
+// });

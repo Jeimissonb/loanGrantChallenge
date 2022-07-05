@@ -47,7 +47,7 @@
               <div class="form-row form-btn">
                 <div class="col-12">
                   <button type="submit" class="btn btn-green">Continuar</button>
-                  <button type="button" class="btn btn-green"><a href="/sendMail" >Enviar</a>
+                  <button type="button" class="btn btn-green"><a href="/envio-email">Enviar</a>
                   </button>
                 </div>
                 <div class="form-row form-btn">

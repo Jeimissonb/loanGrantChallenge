@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Mail\newLaravelTips;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
@@ -26,34 +27,14 @@ Route::get('/dados', [HomeController::class, 'Home'])->name('Page.Dados')->middl
 
 Route::get('/logout', [LoginController::class, 'SingOut'])->name('LoginController.SingOut');
 
-//->middleware('auth');
-//Route::post('/login', [UserController::class, 'login'])->middleware('auth');
 
-//Route::get('/logout', [LoginController::class, 'SingOut']);
+Route::get('envio-email', function() {
 
-// Route::get('/logout', function () {
-//     Auth::logout();
-//     return redirect()->action('App\Http\Controllers\UserController@index');;
-// });
+    $user = new stdClass();
+    $user->name = 'Robson V. Leite';
+    $user->email = 'dididantas000@gmail.com';
 
-//Route::group(['middleware' => ['auth']], function () {
-//Route::post('/login', [UserController::class, 'login'])->name('login');
+    Mail::send(new newLaravelTips($user));
 
-// Route::get('/logout', function () {
-//     Auth::logout();
-//     return redirect()->action('/');
-// });
-//Route::get('/', [UserController::class, 'index'])->name('home');
-//Route::get('/', [LoginController::class, 'singOut'])->name('home.login');
-//Route::get('/logout', [LoginController::class, 'singOut'])->name('home.login');
-//});
-
-//Route::post('/login', [UserController::class, 'login'])->name('login');
-
-Route::get('/sendMail', function () {
-    Mail::send('mail.emailModel', ['curso' => 'Eloquent'], function ($m) {
-        $m->from('fernandodanatas1943@gmail.com', 'Fernando');
-        $m->subject('Meu email de teste');
-        $m->to('dididantas000@gmail.com');
-    });
+    return view('welcome');
 });

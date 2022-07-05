@@ -10,6 +10,6 @@ class HomeController extends Controller
 {
     public function Home()
     {
-        return view('dados');
+        return view('resultado');
     }
 }

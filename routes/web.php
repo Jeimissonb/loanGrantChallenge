@@ -28,13 +28,4 @@ Route::get('/dados', [HomeController::class, 'Home'])->name('Page.Dados')->middl
 Route::get('/logout', [LoginController::class, 'SingOut'])->name('LoginController.SingOut');
 
 
-Route::get('envio-email', function() {
-
-    $user = new stdClass();
-    $user->name = 'Robson V. Leite';
-    $user->email = 'dididantas000@gmail.com';
-
-    Mail::send(new newLaravelTips($user));
-
-    return view('welcome');
-});
+Route::get('envio-email',  [LoginController::class, 'SendMail'])->name('LoginController.SendMail');

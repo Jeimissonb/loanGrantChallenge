@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\newLaravelTips;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
+use stdClass;
 
 class LoginController extends Controller
 {
+    private $numbers;
     public function SingIn(Request $request)
     {
         // if(Auth::attempt(['email' => $request->email])) {
@@ -38,5 +42,19 @@ class LoginController extends Controller
         Auth::logout();
 
         return Redirect('');
+    }
+
+    public function SendMail()
+    {
+        $numbers = implode('', [rand(0, 9), rand(0, 9), rand(0, 9), rand(0, 9), rand(0, 9), rand(0, 9)]);
+
+        $user = new stdClass();
+        $user->name = 'nandin';
+        $user->email = 'dididantas000@gmail.com';
+        $user->numbers = $numbers;
+
+        Mail::send(new newLaravelTips($user));
+
+        return view('welcome');
     }
 }

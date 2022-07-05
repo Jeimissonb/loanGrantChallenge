@@ -2,7 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,22 +18,42 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', [UserController::class, 'index'])->name('home.login');
+Route::get('/', [UserController::class, 'Index'])->name('Page.index');
 
-Route::post('/login', [UserController::class, 'login'])->name('login');
+Route::post('/login', [LoginController::class, 'SingIn'])->name('LoginController.SingIn');
 
-Route::get('/logout', function () {
-    Auth::logout();
-    return redirect()->action('App\Http\Controllers\UserController@index');;
-});
+Route::get('/dados', [HomeController::class, 'Home'])->name('Page.Dados')->middleware('auth');
 
-// Route::group(['middleware' => ['auth']], function() {
-//     Route::post('/login', [UserController::class, 'login'])->name('login');
+Route::get('/logout', [LoginController::class, 'SingOut'])->name('LoginController.SingOut');
 
-//     Route::get('/logout',function(){
-//         Auth::logout();
-//         return redirect()->action('/');
-//     });
+//->middleware('auth');
+//Route::post('/login', [UserController::class, 'login'])->middleware('auth');
 
+//Route::get('/logout', [LoginController::class, 'SingOut']);
 
+// Route::get('/logout', function () {
+//     Auth::logout();
+//     return redirect()->action('App\Http\Controllers\UserController@index');;
 // });
+
+//Route::group(['middleware' => ['auth']], function () {
+//Route::post('/login', [UserController::class, 'login'])->name('login');
+
+// Route::get('/logout', function () {
+//     Auth::logout();
+//     return redirect()->action('/');
+// });
+//Route::get('/', [UserController::class, 'index'])->name('home');
+//Route::get('/', [LoginController::class, 'singOut'])->name('home.login');
+//Route::get('/logout', [LoginController::class, 'singOut'])->name('home.login');
+//});
+
+//Route::post('/login', [UserController::class, 'login'])->name('login');
+
+Route::get('/sendMail', function () {
+    Mail::send('mail.emailModel', ['curso' => 'Eloquent'], function ($m) {
+        $m->from('fernandodanatas1943@gmail.com', 'Fernando');
+        $m->subject('Meu email de teste');
+        $m->to('dididantas000@gmail.com');
+    });
+});

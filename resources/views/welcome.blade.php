@@ -39,7 +39,7 @@
                   <label for="email_code" class="form-label">Digite o código recebido pelo e-mail:</label>
                 </div>
                 <div class="col-md-6">
-                  <input type="text" name="email_code" id="email_code" class="form-control">
+                  <input type="text" required name="email_code" id="email_code" class="form-control">
                 </div>
                 <div class="col-12 form-info">*Código enviado para o e-mail preenchido no 1º campo</div>
               </div>

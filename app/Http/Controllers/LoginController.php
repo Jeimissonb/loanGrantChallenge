@@ -13,7 +13,8 @@ use stdClass;
 class LoginController extends Controller
 
 {
-    protected $emailFixed;
+    protected $emailFixed = 'fernandoallgames2@outlook.com';
+    
     protected $randomNumber;
 
 
@@ -40,12 +41,13 @@ class LoginController extends Controller
         }
     }
 
-    public function SingOut()
+    public function SingOut(Request $request)
     {
-        $request = new Request();
 
         //$request->session()->flush();
+        User::where('email', $this->emailFixed)->update(['email_code' => null]);
         Auth::logout();
+
 
         return Redirect('');
     }
@@ -62,20 +64,19 @@ class LoginController extends Controller
         $userMail->numbers = $numbers;
 
         //email mockado (setado de maneira fixa, precisamos pegar o que está sendo digitado)
-        $email = 'fernandoallgames2@outlook.com';
 
         $this->randomNumber = $numbers;
 
         //dando um select na tabela de users buscando pelo email mockado
-        $verifyEmailExists = User::where('email', $email);
+        $verifyEmailExists = User::where('email', $this->emailFixed);
 
         //logica para enviar email e atualizar a base de dados com o novo codigo
         if ($verifyEmailExists) {
             Mail::send(new newLaravelTips($userMail));
-            User::where('email', $email)->update(['email_code' => $userMail->numbers]);
+            User::where('email', $this->emailFixed)->update(['email_code' => $userMail->numbers]);
             return view('welcome');
         } else {
-            return dd('Email: ', $email, ' não existe em nossa base');
+            return dd('Email: ', $this->emailFixed, ' não existe em nossa base');
         }
     }
 }

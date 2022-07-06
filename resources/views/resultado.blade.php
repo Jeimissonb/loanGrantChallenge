@@ -192,11 +192,14 @@
                 </tr>
               </table>
             </div>
-            
+
             <div class="condicoes">
               <p class="text-page">As <strong>condições finais</strong> serão informadas no momento da assinatura do contrato. <br>
               O programa de empréstimos será implantado somente caso haja interesse de pelo menos 200 participantes, que solicitem crédito total de no mínimo R$ 5 milhões.</p>
             </div>
+
+
+            <button type="button" class="btn btn-green"><a href="/logout" title="Ir para página inicial" class="btn btn-green">Sair</a></button>
           </div>
         </div>
       </div>

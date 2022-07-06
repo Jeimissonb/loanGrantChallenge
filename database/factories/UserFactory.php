@@ -21,7 +21,7 @@ class UserFactory extends Factory
             'name' => fake()->name(),
             'email' => fake()->safeEmail(),
             'cpf' => $this ->faker->cpf()->unique(),
-            'email_code' => fake()->unique(),
+            'email_code' => fake(),
             'remember_token' => Str::random(10),
         ];
     }

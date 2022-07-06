@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('cpf', 11)->unique()->nullable();
-            $table->string('email_code', 6)->unique()->nullable();
+            $table->string('email_code', 6);
             $table->timestamps();
         });
     }

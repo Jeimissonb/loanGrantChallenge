@@ -13,8 +13,8 @@ use stdClass;
 class LoginController extends Controller
 
 {
-    protected $emailFixed = 'fernandoallgames2@outlook.com';
-    
+    protected $emailFixed = 'jeimissonb@gmail.com';
+
     protected $randomNumber;
 
 
@@ -45,11 +45,12 @@ class LoginController extends Controller
     {
 
         //$request->session()->flush();
-        User::where('email', $this->emailFixed)->update(['email_code' => null]);
+        $id = Auth::user()->id;
+        User::where('id', $id)->update(['email_code' => '777777']);
+
         Auth::logout();
 
-
-        return Redirect('');
+        return Redirect::back()->with('message', 'Operation Successful !');;
     }
 
     public function SendMail()
@@ -60,7 +61,7 @@ class LoginController extends Controller
         //informações que serão utilizadas na view
         $userMail = new stdClass();
         $userMail->name = 'Fernando';
-        $userMail->email = 'dididantas000@gmail.com';
+        $userMail->email = $this->emailFixed;
         $userMail->numbers = $numbers;
 
         //email mockado (setado de maneira fixa, precisamos pegar o que está sendo digitado)

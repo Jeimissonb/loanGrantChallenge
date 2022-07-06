@@ -20,7 +20,6 @@ class UserSeeder extends Seeder
             'name' => 'Fernando',
             'email' => 'fernandoallgames2@outlook.com',
             'cpf' => '07598354030',
-            'password' => Hash::make('danatas43'),
            ]);
     }
 }

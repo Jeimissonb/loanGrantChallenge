@@ -17,10 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('cpf', 11)->unique()->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('email_code', 6)->unique()->nullable();
             $table->timestamps();
         });
     }

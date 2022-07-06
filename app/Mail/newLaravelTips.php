@@ -31,7 +31,7 @@ class newLaravelTips extends Mailable
      */
     public function build()
     {
-        $this->subject('Novo episódio está no ar!');
+        $this->subject('código');
         $this->to($this->user->email, $this->user->name);
         return $this->view('mail.newLaravelTips', [
             'user' => $this->user

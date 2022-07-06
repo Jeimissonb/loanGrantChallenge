@@ -1,3 +1,4 @@
-<h1>Saiu um novo episódio!</h1>
+<h1>Código para realizar login no desafio!</h1>
 
-<p>Salve salve {{ $user->name }}, Fernando aqui... {{$user->numbers}} </p>
+<strong> {{ $user->name }}, código para acesso </strong>
+<h2>>>></h2><strong>{{$user->numbers}}</strong>

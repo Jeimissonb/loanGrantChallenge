@@ -11,8 +11,12 @@ use Illuminate\Support\Facades\Redirect;
 use stdClass;
 
 class LoginController extends Controller
+
 {
-    private $numbers;
+    protected $emailFixed;
+    protected $randomNumber;
+
+
     public function SingIn(Request $request)
     {
         // if(Auth::attempt(['email' => $request->email])) {
@@ -24,13 +28,15 @@ class LoginController extends Controller
             ->whereRaw('SUBSTRING(cpf, 2, 1) = ' . $request->cpf2)
             ->whereRaw('SUBSTRING(cpf, 3, 1) = ' . $request->cpf3)
             ->whereRaw('SUBSTRING(cpf, 4, 1) = ' . $request->cpf4)
+            ->where('email_code', $request->email_code)
             ->where('email', $request->email)->first();
+
         if ($user) // se verdade existe um usuário com essas informações
         {
             Auth::login($user); //efetuando a operação de autenticação
             return Redirect('dados');
         } else {
-            dd('Dados incorretos');
+            echo ('Dados incorretos');
         }
     }
 
@@ -46,15 +52,30 @@ class LoginController extends Controller
 
     public function SendMail()
     {
+        //gerando números aleatorios
         $numbers = implode('', [rand(0, 9), rand(0, 9), rand(0, 9), rand(0, 9), rand(0, 9), rand(0, 9)]);
 
-        $user = new stdClass();
-        $user->name = 'nandin';
-        $user->email = 'dididantas000@gmail.com';
-        $user->numbers = $numbers;
+        //informações que serão utilizadas na view
+        $userMail = new stdClass();
+        $userMail->name = 'Fernando';
+        $userMail->email = 'dididantas000@gmail.com';
+        $userMail->numbers = $numbers;
 
-        Mail::send(new newLaravelTips($user));
+        //email mockado (setado de maneira fixa, precisamos pegar o que está sendo digitado)
+        $email = 'fernandoallgames2@outlook.com';
 
-        return view('welcome');
+        $this->randomNumber = $numbers;
+
+        //dando um select na tabela de users buscando pelo email mockado
+        $verifyEmailExists = User::where('email', $email);
+
+        //logica para enviar email e atualizar a base de dados com o novo codigo
+        if ($verifyEmailExists) {
+            Mail::send(new newLaravelTips($userMail));
+            User::where('email', $email)->update(['email_code' => $userMail->numbers]);
+            return view('welcome');
+        } else {
+            return dd('Email: ', $email, ' não existe em nossa base');
+        }
     }
 }

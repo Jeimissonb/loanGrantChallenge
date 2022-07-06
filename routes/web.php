@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Mail\newLaravelTips;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +28,4 @@ Route::get('/dados', [HomeController::class, 'Home'])->name('Page.Dados')->middl
 
 Route::get('/logout', [LoginController::class, 'SingOut'])->name('LoginController.SingOut');
 
-
-Route::get('envio-email',  [LoginController::class, 'SendMail'])->name('LoginController.SendMail');
+Route::get('send-mail',  [LoginController::class, 'SendMail'])->name('LoginController.SendMail');

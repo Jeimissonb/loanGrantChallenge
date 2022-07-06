@@ -11,7 +11,7 @@
                 @csrf
               <div class="form-row">
                 <div class="col-12 form-placeholder">
-                  <label for="email" class="form-label">Digite o seu e-mail do trabalho:</label>
+                  <label for="email"  class="form-label">Digite o seu e-mail do trabalho:</label>
                   <input type="email" name="email" id="email" class="form-control" required>
                 </div>
               </div>
@@ -36,10 +36,10 @@
 
               <div class="form-row">
                 <div class="col-md-6">
-                  <label for="codigo" class="form-label">Digite o código recebido pelo e-mail:</label>
+                  <label for="email_code" class="form-label">Digite o código recebido pelo e-mail:</label>
                 </div>
                 <div class="col-md-6">
-                  <input type="text" id="codigo" class="form-control">
+                  <input type="text" name="email_code" id="email_code" class="form-control">
                 </div>
                 <div class="col-12 form-info">*Código enviado para o e-mail preenchido no 1º campo</div>
               </div>
@@ -47,8 +47,13 @@
               <div class="form-row form-btn">
                 <div class="col-12">
                   <button type="submit" class="btn btn-green">Continuar</button>
-                  <button type="button" class="btn btn-green"><a href="/envio-email">Enviar</a>
-                  </button>
+                  <form>
+                    @csrf
+                    <button type="button"  class="btn btn-green"><a href="/send-mail">Enviar</a>
+                    </button>
+
+                  </form>
+
                 </div>
                 <div class="form-row form-btn">
               </div>

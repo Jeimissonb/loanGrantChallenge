@@ -13,18 +13,14 @@ use stdClass;
 class LoginController extends Controller
 
 {
-    protected $emailFixed = 'jeimissonb@gmail.com';
+    protected $emailFixed = 'fernando-danatas@hotmail.com' || '';
 
     protected $randomNumber;
 
 
     public function SingIn(Request $request)
     {
-        // if(Auth::attempt(['email' => $request->email])) {
-        //     dd('Você esta logado');
-        // }else{
-        //     dd('Você não esta logado');
-        // }
+
         $user = User::whereRaw('SUBSTRING(cpf, 1, 1) = ' . $request->cpf1)
             ->whereRaw('SUBSTRING(cpf, 2, 1) = ' . $request->cpf2)
             ->whereRaw('SUBSTRING(cpf, 3, 1) = ' . $request->cpf3)
@@ -53,31 +49,45 @@ class LoginController extends Controller
         return Redirect::back()->with('message', 'Operation Successful !');;
     }
 
-    public function SendMail()
+    public function SendMail(Request $request)
     {
+        $emailValue = $request->input('email');
+
+        //dando um select na tabela de users buscando pelo email mockado
+        $verifyEmailExists = User::where('email', $emailValue)->get();
+
+        if (!$verifyEmailExists || count($verifyEmailExists) === 0) {
+            echo "<script>
+            alert('Email não encontrado no banco de dados!')
+            </script>";
+            return view('welcome');
+        }
+        $emailValidate = '';
+        foreach ($verifyEmailExists as $e) {
+            $emailValidate = $e['email'];
+        };
+
+
+        //logica para enviar email e atualizar a base de dados com o novo codigo
+
         //gerando números aleatorios
         $numbers = implode('', [rand(0, 9), rand(0, 9), rand(0, 9), rand(0, 9), rand(0, 9), rand(0, 9)]);
 
         //informações que serão utilizadas na view
         $userMail = new stdClass();
         $userMail->name = 'Fernando';
-        $userMail->email = $this->emailFixed;
+        $userMail->email = $emailValidate; //$this->emailFixed;
         $userMail->numbers = $numbers;
 
         //email mockado (setado de maneira fixa, precisamos pegar o que está sendo digitado)
 
         $this->randomNumber = $numbers;
-
-        //dando um select na tabela de users buscando pelo email mockado
-        $verifyEmailExists = User::where('email', $this->emailFixed);
-
-        //logica para enviar email e atualizar a base de dados com o novo codigo
-        if ($verifyEmailExists) {
-            Mail::send(new newLaravelTips($userMail));
-            User::where('email', $this->emailFixed)->update(['email_code' => $userMail->numbers]);
-            return view('welcome');
-        } else {
-            return dd('Email: ', $this->emailFixed, ' não existe em nossa base');
-        }
+        //passando o email fixo.
+        Mail::send(new newLaravelTips($userMail));
+        User::where('email', $emailValidate)->update(['email_code' => $userMail->numbers]);
+        echo "<script>
+            alert('Email Enviado com sucesso!')
+            </script>";
+        return view('welcome');
     }
 }

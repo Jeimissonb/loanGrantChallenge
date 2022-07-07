@@ -21,16 +21,16 @@
                   <label for="cpf-1" class="form-label">Digite os 4 primeiros dígitos do seu CPF:</label>
                 </div>
                 <div class="col-2 col-md">
-                    <input type="text" name="cpf1" id="cpf1" class="form-control" required>
+                    <input type="text" name="cpf1" id="cpf1" class="form-control" inputmode="numeric" minlength="1" maxlength="1" size="1" required>
                 </div>
                 <div class="col-2 col-md">
-                    <input type="text" name="cpf2" id="cpf2" class="form-control" required>
+                    <input type="text" name="cpf2" id="cpf2" class="form-control" inputmode="numeric" minlength="1" maxlength="1" size="1" required>
                 </div>
                 <div class="col-2 col-md">
-                    <input type="text" name="cpf3" id="cpf3" class="form-control" required>
+                    <input type="text" name="cpf3" id="cpf3" class="form-control" inputmode="numeric" minlength="1" maxlength="1" size="1" required>
                 </div>
                 <div class="col-2 col-md">
-                  <input type="text" name="cpf4" id="cpf4" class="form-control" required>
+                  <input type="text" name="cpf4" id="cpf4" class="form-control" inputmode="numeric" minlength="1" maxlength="1" size="1" required>
                 </div>
               </div>
 
@@ -39,7 +39,7 @@
                   <label for="email_code" class="form-label">Digite o código recebido pelo e-mail:</label>
                 </div>
                 <div class="col-md-6">
-                  <input type="text" required name="email_code" id="email_code" class="form-control">
+                  <input type="text" inputmode="numeric" minlength="6" maxlength="6" size="6" required name="email_code" id="email_code" class="form-control">
                 </div>
                 <div class="col-12 form-info">*Código enviado para o e-mail preenchido no 1º campo</div>
               </div>
@@ -47,12 +47,8 @@
               <div class="form-row form-btn">
                 <div class="col-12">
                   <button type="submit" class="btn btn-green">Continuar</button>
-                  <form>
-                    @csrf
-                    <button type="button"  class="btn btn-green"><a href="/send-mail">Enviar</a>
-                    </button>
-
-                  </form>
+                  <button type="submit"  class="btn btn-green" formaction="{{ route('LoginController.SendMail') }}">Enviar
+                </button>
 
                 </div>
                 <div class="form-row form-btn">

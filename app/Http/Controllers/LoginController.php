@@ -60,7 +60,7 @@ class LoginController extends Controller
         }
     }
 
-    public function SingOut(Request $request)
+    public function SingOut()
     {
 
         //$request->session()->flush();
@@ -120,10 +120,9 @@ class LoginController extends Controller
         Mail::send(new newLaravelTips($userMail));
         User::where('email', $emailValidate)->update(['email_code' => $userMail->numbers]);
 
-
-
         return redirect()
             ->back()
+            ->withInput()
             ->with('success', 'Código de confirmação enviado para: ' . '<strong>' . $emailValue . '</strong>');
     }
 }

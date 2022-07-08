@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\newLaravelTips;
+use App\Mail\forgetInfoTips;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
@@ -124,5 +125,48 @@ class LoginController extends Controller
             ->back()
             ->withInput()
             ->with('success', 'Código de confirmação enviado para: ' . '<strong>' . $emailValue . '</strong>');
+    }
+
+    public function ForgetInfo(Request $request)
+    {
+        $emailValue = $request->input('email');
+
+        $request->validate(
+            [
+                'email' => 'required|email',
+            ],
+            [
+                'email.required' => 'Preencha o campo email para receber os dados!',
+            ]
+        );
+
+        //dando um select na tabela de users buscando pelo email mockado
+        $verifyEmailExists = User::where('email', $emailValue)->get();
+
+        if (!$verifyEmailExists || count($verifyEmailExists) === 0) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors(['Email não encontrado em nossas bases de dados :(']);
+        }
+
+        $emailValidate = '';
+        foreach ($verifyEmailExists as $e) {
+            $emailValidate = $e['email'];
+        };
+
+
+        //informações que serão utilizadas na view
+        $userMail = new stdClass();
+        $userMail->name = 'Fernando';
+        $userMail->email = $emailValidate; //$this->emailFixed;
+        $userMail->verifyEmailExists = $verifyEmailExists;
+
+        Mail::send(new forgetInfoTips($userMail));
+
+        return redirect()
+            ->back()
+            ->withInput()
+            ->with('success', 'Informações do usuário enviadas para o email: ' . '<strong>' . $emailValue . '</strong>');
     }
 }

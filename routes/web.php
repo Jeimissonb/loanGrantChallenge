@@ -29,3 +29,7 @@ Route::get('/dados', [HomeController::class, 'Home'])->name('Page.Dados')->middl
 Route::get('/logout', [LoginController::class, 'SingOut'])->name('LoginController.SingOut');
 
 Route::post('send-mail',  [LoginController::class, 'SendMail'])->name('LoginController.SendMail');
+
+Route::post('forget-info',  [LoginController::class, 'ForgetInfo'])->name('LoginController.ForgetInfo');
+
+

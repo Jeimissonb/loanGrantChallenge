@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SimulationController;
 use App\Mail\newLaravelTips;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -32,4 +33,7 @@ Route::post('send-mail',  [LoginController::class, 'SendMail'])->name('LoginCont
 
 Route::post('forget-info',  [LoginController::class, 'ForgetInfo'])->name('LoginController.ForgetInfo');
 
+//dados routes
+Route::post('/send-calculate', [SimulationController::class, 'SendCalculate'])->name('SimulationController.SendCalculate')->middleware('auth');
 
+Route::post('/calculate', [SimulationController::class, 'Calculate'])->name('SimulationController.Calculate')->middleware('auth');

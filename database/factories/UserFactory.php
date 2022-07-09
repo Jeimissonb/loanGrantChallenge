@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -22,7 +21,7 @@ class UserFactory extends Factory
             'email' => fake()->safeEmail(),
             'cpf' => $this ->faker->cpf()->unique(),
             'email_code' => fake(),
-            'remember_token' => Str::random(10),
+            'is_master' => fake(),
         ];
     }
 

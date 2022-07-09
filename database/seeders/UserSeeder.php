@@ -20,13 +20,15 @@ class UserSeeder extends Seeder
             'name' => 'Fernando',
             'email' => 'fernando-danatas@hotmail.com',
             'cpf' => '07598354030',
-            'email_code' => '777777'
+            'email_code' => '777777',
+            'is_master' => true,
            ]);
         User::create([
             'name' => 'Nadir',
             'email' => 'nadirdantas000@gmail.com',
             'cpf' => '04774409081',
-            'email_code' => '777777'
+            'email_code' => '777777',
+            'is_master' => false,
            ]);
     }
 }

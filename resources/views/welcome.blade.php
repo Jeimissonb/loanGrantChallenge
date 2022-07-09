@@ -66,8 +66,8 @@
                                 <button type="submit" class="btn btn-green">Continuar</button>
                             </div>
                             <div class="col-12">
-                                <button type="submit" class="btn btn-success"
-                                    formaction="{{ route('LoginController.ForgetInfo') }}">Esqueci meus dados?
+                                <button type="submit" class="btn btn-info w-100"
+                                    formaction="{{ route('LoginController.ForgetInfo') }}">Esqueci meus dados
                                 </button>
                             </div>
                     </form>

@@ -13,13 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('simulations', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('cpf', 11)->unique()->nullable();
-            $table->string('email_code', 6);
-            $table->boolean('is_master', false);
+            $table->float('pretended_value');
+            $table->float('pretended_deadline');
+            $table->float('increased_value');
+            $table->boolean('saved');
+            $table->bigInteger('id_user')->unsigned();
+            $table->foreign('id_user')->references('id')->on('users');
+
+
             $table->timestamps();
         });
     }
@@ -31,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('simulations');
     }
 };

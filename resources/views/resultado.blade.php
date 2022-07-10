@@ -12,9 +12,10 @@
                             @csrf
                             <div class="numbers">
                                 <div class="box-number orange">
-                                    <input type="text" name='pretended_value' value="{{ old('pretended_value') }}" class="number"
-                                        id="valor-pretendido" data-mask="money" required>
+                                    <input type="text" name="pretended_value" value="{{ old('pretended_value') }}"
+                                        class="number" id="valor-pretendido" data-mask="money" required>
                                 </div>
+
 
                                 <div class="box-number orange-border">
                                     <span class="desc">Valor Minímo</span>
@@ -69,7 +70,7 @@
 
                                         <div class="number orange">
                                             <span class="desc">Custo efetivo ao mês:</span>
-                                            <span class="value">2,8%</span>
+                                            <span class="value">17,9%</span>
                                         </div>
                                     </label>
                                 </div>
@@ -101,7 +102,7 @@
 
                                         <div class="number orange">
                                             <span class="desc">Custo efetivo ao mês:</span>
-                                            <span class="value">1,90%</span>
+                                            <span class="value">9,4%</span>
                                         </div>
                                     </label>
                                 </div>
@@ -134,7 +135,7 @@
 
                                         <div class="number orange">
                                             <span class="desc">Custo efetivo ao mês:</span>
-                                            <span class="value">1,85%</span>
+                                            <span class="value">5.2%</span>
                                         </div>
                                     </label>
                                 </div>
@@ -167,7 +168,7 @@
 
                                         <div class="number orange">
                                             <span class="desc">Custo efetivo ao mês:</span>
-                                            <span class="value">1,64%</span>
+                                            <span class="value">3.7%</span>
                                         </div>
                                     </label>
                                 </div>
@@ -195,7 +196,7 @@
                                         </span>
                                     </div>
                                     <div class="box-num orange">
-                                        <span class="number" id="porcentagemPretendida">2,8%</span>
+                                        <span class="number" id="porcentagemPretendida">17,9%</span>
                                     </div>
                                 </div>
                             </div>
@@ -206,12 +207,12 @@
 
                                 <div class="custom-control custom-radio custom-control-inline">
                                     <input onChange="this.form.submit()" type="radio" class="custom-control-input"
-                                        name="interesse" id="sim" value="sim">
+                                        name="saved" id="sim" value="sim">
                                     <label class="custom-control-label" for="sim">Sim, estou interessado</label>
                                 </div>
 
                                 <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" name="interesse"
+                                    <input type="radio" class="custom-control-input" name="saved"
                                         id="nao" value="nao">
                                     <label class="custom-control-label" for="nao">Não tenho interesse</label>
                                 </div>

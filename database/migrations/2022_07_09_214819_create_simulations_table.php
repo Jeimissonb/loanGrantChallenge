@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('simulations', function (Blueprint $table) {
             $table->id();
             $table->float('pretended_value');
-            $table->float('pretended_deadline');
+            $table->float('pretended_deadline'); //must be int, change it!
             $table->float('increased_value');
             $table->boolean('saved');
             $table->bigInteger('id_user')->unsigned();

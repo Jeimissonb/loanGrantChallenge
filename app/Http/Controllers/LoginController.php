@@ -51,7 +51,7 @@ class LoginController extends Controller
         if ($user) // se verdade existe um usuário com essas informações
         {
             Auth::login($user); //efetuando a operação de autenticação
-            return Redirect('dados');
+            return Redirect('resultado');
         } else {
             // retorna com redirect para a última rota, com Inputs do usuário e Mensagem de Erro
             return redirect()

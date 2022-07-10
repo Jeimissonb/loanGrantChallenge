@@ -25,7 +25,7 @@ Route::get('/', [UserController::class, 'Index'])->name('Page.index');
 
 Route::post('/login', [LoginController::class, 'SingIn'])->name('LoginController.SingIn');
 
-Route::get('/dados', [HomeController::class, 'Home'])->name('Page.Dados')->middleware('auth');
+Route::get('/resultado', [HomeController::class, 'Home'])->name('Page.Dados')->middleware('auth');
 
 Route::get('/logout', [LoginController::class, 'SingOut'])->name('LoginController.SingOut');
 

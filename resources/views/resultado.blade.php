@@ -3,6 +3,23 @@
 <main class="page" id="emprestimo">
     <div class="container">
         <div class="row">
+            @if (\Session::has('success'))
+                <div class="alert alert-success">
+                    <ul>
+                        <li>{!! \Session::get('success') !!}</li>
+                    </ul>
+                </div>
+            @endif
+            <!--FORM VALIDATE-->
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="col-12">
                 <div class="box">
                     <form method="POST" action="{{ route('SimulationController.SendCalculate') }}" class="form">
@@ -12,7 +29,7 @@
                             @csrf
                             <div class="numbers">
                                 <div class="box-number orange">
-                                    <input type="text" name="pretended_value" value="{{ old('pretended_value') }}"
+                                    <input type="text" name="pretended_value" value="{{ old('pretended_value', 0) }}"
                                         class="number" id="valor-pretendido" data-mask="money" required>
                                 </div>
 
@@ -53,7 +70,7 @@
                                             <span class="value">
                                                 <div class="icon"><img src="/assets/images/hidden-white.svg"
                                                         alt=""> <span>***</span></div> <span class="total">R$
-                                                    {{ Session::get('increasedValue') ? Session::get('increasedValue') : '0' }}</span>
+                                                    {{ Session::get('increasedValue6') ? Session::get('increasedValue6') : '0' }}</span>
                                             </span>
                                         </div>
 
@@ -63,7 +80,7 @@
                                                 <div class="icon"><img src="/assets/images/hidden.svg" alt="">
                                                     <span>***</span>
                                                 </div> <span class="total">6x de: <br>R$ <span
-                                                        id="parcela6">{{ Session::get('installmentValue') ? Session::get('installmentValue') : '0' }}</span></span>
+                                                        id="parcela6">{{ Session::get('installmentValue6') ? Session::get('installmentValue6') : '0' }}</span></span>
                                             </span>
                                         </div>
 
@@ -85,7 +102,7 @@
                                             <span class="value">
                                                 <div class="icon"><img src="/assets/images/hidden-white.svg"
                                                         alt=""> <span>***</span></div> <span class="total">R$
-                                                    {{ Session::get('increasedValue') ? Session::get('increasedValue') : '0' }}</span>
+                                                    {{ Session::get('increasedValue12') ? Session::get('increasedValue12') : '0' }}</span>
                                             </span>
                                         </div>
 
@@ -95,7 +112,7 @@
                                                 <div class="icon"><img src="/assets/images/hidden.svg" alt="">
                                                     <span>***</span>
                                                 </div> <span class="total">12x de: <br><span
-                                                        id="parcela12">{{ Session::get('installmentValue') ? Session::get('installmentValue') : '0' }}</span></span>
+                                                        id="parcela12">{{ Session::get('installmentValue12') ? Session::get('installmentValue12') : '0' }}</span></span>
                                             </span>
                                         </div>
 
@@ -117,7 +134,7 @@
                                             <span class="value">
                                                 <div class="icon"><img src="/assets/images/hidden-white.svg"
                                                         alt=""> <span>***</span></div> <span class="total">R$
-                                                    {{ Session::get('increasedValue') ? Session::get('increasedValue') : '0' }}</span>
+                                                    {{ Session::get('increasedValue24') ? Session::get('increasedValue24') : '0' }}</span>
                                             </span>
                                         </div>
 
@@ -128,7 +145,7 @@
                                                         alt="">
                                                     <span>***</span>
                                                 </div> <span class="total">24x de: <br><span
-                                                        id="parcela24">{{ Session::get('installmentValue') ? Session::get('installmentValue') : '0' }}</span></span>
+                                                        id="parcela24">{{ Session::get('installmentValue24') ? Session::get('installmentValue24') : '0' }}</span></span>
                                             </span>
                                         </div>
 
@@ -150,7 +167,7 @@
                                             <span class="value">
                                                 <div class="icon"><img src="/assets/images/hidden-white.svg"
                                                         alt=""> <span>***</span></div> <span class="total">R$
-                                                    {{ Session::get('increasedValue') ? Session::get('increasedValue') : '0' }}</span>
+                                                    {{ Session::get('increasedValue36') ? Session::get('increasedValue36') : '0' }}</span>
                                             </span>
                                         </div>
 
@@ -161,7 +178,7 @@
                                                         alt="">
                                                     <span>***</span>
                                                 </div> <span class="total">36x de: <br><span
-                                                        id="parcela36">{{ Session::get('installmentValue') ? Session::get('installmentValue') : '0' }}</span></span>
+                                                        id="parcela36">{{ Session::get('installmentValue36') ? Session::get('installmentValue36') : '0' }}</span></span>
                                             </span>
                                         </div>
 
@@ -182,16 +199,17 @@
                                 </h2>
 
                                 <div class="mes">
-                                    <span class="num">6</span>/Meses
+                                    <span class="num">{{ Session::get('selectedInstallment') }}</span>/Meses
                                 </div>
 
                                 <div class="valor">
                                     <div class="box-num green">
-                                        <span class="number">R$ 18.208,72</span>
+                                        <span class="number">R$ {{ Session::get('selectedTotalValue') }}</span>
                                     </div>
                                     <div class="box-calc">
                                         <span class="number">
-                                            12x de: R$ 2.685,00
+                                            {{ Session::get('selectedInstallment') }}x de: R$
+                                            {{ Session::get('selectedInstallValue') }}
                                         </span>
                                     </div>
                                     <div class="box-num orange">

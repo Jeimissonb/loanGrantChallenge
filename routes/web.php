@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExtractDataController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
@@ -37,3 +38,8 @@ Route::post('forget-info',  [LoginController::class, 'ForgetInfo'])->name('Login
 Route::post('/send-calculate', [SimulationController::class, 'SendCalculate'])->name('SimulationController.SendCalculate')->middleware('auth');
 
 Route::post('/calculate', [SimulationController::class, 'Calculate'])->name('SimulationController.Calculate')->middleware('auth');
+
+
+//extrair dados rotas
+Route::get('/extract-data', [ExtractDataController::class, 'ExtractData'])->name('ExtractDataController.ExtractData')->middleware('auth');
+Route::get('back-page', [ExtractDataController::class, 'BackPage'])->name('ExtractDataController.BackPage')->middleware('auth');

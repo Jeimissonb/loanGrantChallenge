@@ -11,6 +11,8 @@
               <p><strong>Valor Total: </strong>R$ 0,00</p>
 
               <a href="/logout" title="Ir para página inicial" class="btn btn-green">Sair</a>
+              <a href="/back-page" title="Voltar para página anterior" class="btn btn-info">Voltar</a>
+
             </div>
           </div>
         </div>

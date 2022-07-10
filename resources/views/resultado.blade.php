@@ -269,6 +269,12 @@
 
                     <button type="button" class="btn btn-green"><a href="/logout" title="Ir para página inicial"
                             class="btn btn-green">Sair</a></button>
+
+                    @if (Auth::user()->is_master)
+                    <button type="button" class="btn btn-info"><a href="/extract-data" title="Ir para página inicial"
+                        class="btn btn-info">Dados administrativos</a></button>
+
+                    @endif
                 </div>
             </div>
         </div>

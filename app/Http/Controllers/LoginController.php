@@ -70,7 +70,8 @@ class LoginController extends Controller
 
         Auth::logout();
 
-        return Redirect::back()->with('message', 'Operation Successful !');
+        return redirect()
+            ->back();
     }
 
     public function SendMail(Request $request)

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 class SimulationController extends Controller
 {
+    protected $increasedValue = 'x';
+
     public function SendCalculate(Request $request)
     {
     }
@@ -40,6 +42,13 @@ class SimulationController extends Controller
                 break;
         }
 
-        
+        return redirect()
+            ->back()
+            ->with('installmentValue', $installmentValue)
+            ->with('increasedValue', $increasedValue)
+            ->withInput()
+            ->withErrors(['Email não encontrado em nossas bases de dados :(']);
+        // return view('resultado', ["installmentValue" => $installmentValue]);
+        // acima é outra forma de fazer, mas a pagina é atualizada assim :(
     }
 }

@@ -48,13 +48,12 @@
                                         <div class="mes">
                                             <span class="num">6</span>/Meses
                                         </div>
-
                                         <div class="number white limite-valor d-none">
                                             <span class="desc">Limite de crédito:</span>
                                             <span class="value">
                                                 <div class="icon"><img src="/assets/images/hidden-white.svg"
                                                         alt=""> <span>***</span></div> <span class="total">R$
-                                                    1000,00</span>
+                                                    {{ Session::get('increasedValue') ? Session::get('increasedValue') : '0' }}</span>
                                             </span>
                                         </div>
 
@@ -64,7 +63,7 @@
                                                 <div class="icon"><img src="/assets/images/hidden.svg" alt="">
                                                     <span>***</span>
                                                 </div> <span class="total">6x de: <br>R$ <span
-                                                        id="parcela6">2.685,00</span></span>
+                                                        id="parcela6">{{ Session::get('installmentValue') ? Session::get('installmentValue') : '0' }}</span></span>
                                             </span>
                                         </div>
 
@@ -86,7 +85,7 @@
                                             <span class="value">
                                                 <div class="icon"><img src="/assets/images/hidden-white.svg"
                                                         alt=""> <span>***</span></div> <span class="total">R$
-                                                    1000,00</span>
+                                                    {{ Session::get('increasedValue') ? Session::get('increasedValue') : '0' }}</span>
                                             </span>
                                         </div>
 
@@ -96,7 +95,7 @@
                                                 <div class="icon"><img src="/assets/images/hidden.svg" alt="">
                                                     <span>***</span>
                                                 </div> <span class="total">12x de: <br><span
-                                                        id="parcela12">1.410,00</span></span>
+                                                        id="parcela12">{{ Session::get('installmentValue') ? Session::get('installmentValue') : '0' }}</span></span>
                                             </span>
                                         </div>
 
@@ -118,7 +117,7 @@
                                             <span class="value">
                                                 <div class="icon"><img src="/assets/images/hidden-white.svg"
                                                         alt=""> <span>***</span></div> <span class="total">R$
-                                                    1000,00</span>
+                                                    {{ Session::get('increasedValue') ? Session::get('increasedValue') : '0' }}</span>
                                             </span>
                                         </div>
 
@@ -129,7 +128,7 @@
                                                         alt="">
                                                     <span>***</span>
                                                 </div> <span class="total">24x de: <br><span
-                                                        id="parcela24">780,00</span></span>
+                                                        id="parcela24">{{ Session::get('installmentValue') ? Session::get('installmentValue') : '0' }}</span></span>
                                             </span>
                                         </div>
 
@@ -151,7 +150,7 @@
                                             <span class="value">
                                                 <div class="icon"><img src="/assets/images/hidden-white.svg"
                                                         alt=""> <span>***</span></div> <span class="total">R$
-                                                    1000,00</span>
+                                                    {{ Session::get('increasedValue') ? Session::get('increasedValue') : '0' }}</span>
                                             </span>
                                         </div>
 
@@ -162,7 +161,7 @@
                                                         alt="">
                                                     <span>***</span>
                                                 </div> <span class="total">36x de: <br><span
-                                                        id="parcela36">555,00</span></span>
+                                                        id="parcela36">{{ Session::get('installmentValue') ? Session::get('installmentValue') : '0' }}</span></span>
                                             </span>
                                         </div>
 
@@ -212,8 +211,8 @@
                                 </div>
 
                                 <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" name="saved"
-                                        id="nao" value="nao">
+                                    <input type="radio" class="custom-control-input" name="saved" id="nao"
+                                        value="nao">
                                     <label class="custom-control-label" for="nao">Não tenho interesse</label>
                                 </div>
                             </div>

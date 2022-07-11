@@ -79,7 +79,7 @@ class LoginController extends Controller
         User::where('email', $emailValidate)->update(['email_code' => $userMail->numbers]);
 
         //chamando função de redirect para quando for sucesso
-        $this->RedirectBackSuccess('Código de confirmação enviado para: ', $emailValue);
+        return $this->RedirectBackSuccess('Código de confirmação enviado para: ', $emailValue);
     }
 
     public function ForgetInfo(Request $request)
@@ -110,7 +110,7 @@ class LoginController extends Controller
         Mail::send(new forgetInfoTips($userMail));
 
         //chamando função de redirect para quando for sucesso
-        $this->RedirectBackSuccess('Informações do usuário enviadas para o email: ', $emailValue);
+        return $this->RedirectBackSuccess('Informações do usuário enviadas para o email: ', $emailValue);
     }
 
     public function RedirectBackSuccess($message, $fieldInsideMessage)

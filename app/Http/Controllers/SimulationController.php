@@ -21,6 +21,7 @@ class SimulationController extends Controller
             'saved' => $request->saved == "sim" ? true : false,
         ];
 
+        //chamando função de validações
         $this->validations($request);
 
         //verificando se os registros existem no array e se nenhum deles é 0, caso seja então irá cair no else, onde ocorrerá um redirect com os erros
@@ -57,20 +58,26 @@ class SimulationController extends Controller
         $months = $request->input('pretended_deadline');
         $value = $request->input('pretended_value');
 
+        //conjunto de variáveis que estão em utilização na view
+
+        //conjunto de variaveis para os valores totais já com juros
         $increasedValue6 = null;
         $increasedValue12 = null;
         $increasedValue24 = null;
         $increasedValue36 = null;
 
+        //conjunto de variaveis para os valores de cada parcela
         $installmentValue6 = null;
         $installmentValue12 = null;
         $installmentValue24 = null;
         $installmentValue36 = null;
 
+        //conjunto de variaveis que indica, respectivamente, parcela selecionada no checkbox, valor total com base no que está selecionado e o valor da parcela selecionada;
         $selectedInstallment = '?';
         $selectedTotalValue = null;
         $selectedInstallValue = null;
 
+        //if necessário para popular variáveis, caso o mês esteja selecionado
         if ($months) {
             $increasedValue6 = number_format((float)$value + ((float)$value  * 0.179), 3);
             $increasedValue12 = number_format((float)$value + ((float)$value  * 0.094), 3);
@@ -83,6 +90,7 @@ class SimulationController extends Controller
             $installmentValue36 = $increasedValue36 / 36;
         }
 
+        //esse switch é necessário pois precisa-se identificar qual modalidade de parcelamento está selecionada, e com isso, jogamo
         switch ($months) {
             case '6':
                 $selectedInstallment = '6';
@@ -118,8 +126,10 @@ class SimulationController extends Controller
                 break;
         }
 
+        //chamando validações
         $this->validations($request);
 
+        //redirecionando e empacotando variáveis para utilizar no front, já com valores devidamente formatados e prontos para serem chamados!
         return redirect()
             ->back()
             ->with('installmentValue6', number_format($installmentValue6, 3) < 1000 ? ltrim(number_format($installmentValue6, 3), '0.') : number_format($installmentValue6, 3))
@@ -138,6 +148,7 @@ class SimulationController extends Controller
         // acima é outra forma de fazer, mas a pagina é atualizada assim :(
     }
 
+    //função para validações, pois assim evita-se repetir o mesmo código onde precisar das mesmas validações
     public function validations(Request $request)
     {
         $request->validate(
@@ -163,6 +174,7 @@ class SimulationController extends Controller
         );
     }
 
+    //função para pegar o valor de uma variável, em string, e converter para float já formatado através de funções regex, e com nomes de variáveis bem subjetivos
     public function getAmount($money)
     {
         $cleanString = preg_replace('/([^0-9\.,])/i', '', $money);
@@ -176,6 +188,7 @@ class SimulationController extends Controller
         return (float) str_replace(',', '.', $removedThousandSeparator);
     }
 
+    //função para calcular o valor incrementado com base nas parcelas, utilizada em várias partes do código e evita repetições;
     public function CalculateIncreasedValue($pretendedValue, $pretendedDeadline)
     {
         $pretendedValueConverted = $this->getAmount($pretendedValue);

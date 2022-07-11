@@ -46,3 +46,4 @@ Route::get('/extract-data', [ExtractDataController::class, 'ExtractData'])->name
 Route::get('back-page', [ExtractDataController::class, 'BackPage'])->name('ExtractDataController.BackPage')->middleware('auth');
 
 Route::get('download-data', [ExtractDataController::class, 'DownloadData'])->name('ExtractDataController.DownloadData')->middleware('auth');
+

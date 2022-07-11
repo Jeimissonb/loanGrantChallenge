@@ -12,7 +12,7 @@ class SimulationController extends Controller
     public function SendCalculate(Request $request)
     {
         // dd($request->pretended_value);
-        // Array associativo que vai para o DB
+        // Array associativo para ser persistido no DB
         $data = [
             'pretended_value' => $this->getAmount($request->pretended_value),
             'pretended_deadline' => $this->getAmount($request->pretended_deadline),

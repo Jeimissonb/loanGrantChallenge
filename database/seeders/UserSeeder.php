@@ -18,14 +18,14 @@ class UserSeeder extends Seeder
     {
         User::create([
             'name' => 'Fernando',
-            'email' => 'fernando-danatas@hotmail.com',
+            'email' => 'fernandoallgames3@outlook.com',
             'cpf' => '07598354030',
             'email_code' => '777777',
             'is_master' => true,
            ]);
         User::create([
             'name' => 'Nadir',
-            'email' => 'nadirdantas000@gmail.com',
+            'email' => 'fernandoallgames4@outlook.com',
             'cpf' => '04774409081',
             'email_code' => '777777',
             'is_master' => false,

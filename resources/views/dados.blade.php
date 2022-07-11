@@ -7,8 +7,8 @@
             <h1 class="title">Dados</h1>
 
             <div class="box-dados">
-              <p><strong>Simulações: </strong>0</p>
-              <p><strong>Valor Total: </strong>R$ 0,00</p>
+              <p><strong>Simulações: </strong>{{ $totalSimulations }}</p>
+              <p><strong>Valor Total: </strong>{{ $totalValueSimulations }}</p>
 
               <a href="/logout" title="Ir para página inicial" class="btn btn-green">Sair</a>
               <a href="/back-page" title="Voltar para página anterior" class="btn btn-info">Voltar</a>

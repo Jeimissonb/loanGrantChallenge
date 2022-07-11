@@ -12,8 +12,18 @@ class ExtractDataController extends Controller
 {
     public function ExtractData()
     {
-        return view('dados');
+        $simulations = Simulation::all();
+        $totalSimulations = count($simulations);
+        $totalValueSimulations = null;
+
+        foreach ($simulations as $e) {
+
+            $totalValueSimulations = $totalValueSimulations + $e['increased_value'];
+        }
+
+        return view('dados', compact('totalValueSimulations', 'totalSimulations'));
     }
+
     public function BackPage()
     {
         return redirect('/resultado');
@@ -22,17 +32,7 @@ class ExtractDataController extends Controller
     public function DownloadData()
     {
         $user = User::all();
-
-
-        // dd(isset($user->id) ? $user->id : 500);
-        // $simulations = Simulation::where('id_user', $user->id)->get();
         $simulations = Simulation::all();
-
-
-        // dd($simulations);
-
-        // $users = Friends::where('accepted', false)->where('target_user', $userId)->get();
-
         $pdf = PDF::loadView('mail.allData', compact('user', 'simulations'));
         return $pdf->setPaper('a4')->stream('kbrChallenge.pdf');
     }

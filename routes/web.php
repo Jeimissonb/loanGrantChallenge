@@ -42,4 +42,7 @@ Route::post('/calculate', [SimulationController::class, 'Calculate'])->name('Sim
 
 //extrair dados rotas
 Route::get('/extract-data', [ExtractDataController::class, 'ExtractData'])->name('ExtractDataController.ExtractData')->middleware('auth');
+
 Route::get('back-page', [ExtractDataController::class, 'BackPage'])->name('ExtractDataController.BackPage')->middleware('auth');
+
+Route::get('download-data', [ExtractDataController::class, 'DownloadData'])->name('ExtractDataController.DownloadData')->middleware('auth');

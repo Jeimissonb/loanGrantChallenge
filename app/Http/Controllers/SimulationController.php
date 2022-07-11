@@ -23,17 +23,23 @@ class SimulationController extends Controller
 
         $this->validations($request);
 
-
-
         //verificando se os registros existem no array e se nenhum deles é 0, caso seja então irá cair no else, onde ocorrerá um redirect com os erros
         if ($data && $data['pretended_value'] !== 0.0 && $data['pretended_deadline'] !== 0.0) {
+            $idFromUser = Auth::user()->id;
+            $verifyExists = Simulation::where('id_user', $idFromUser);
 
-            Simulation::where('id_user', Auth::user()->id)->update($data);
+            // dd($verifyExists);
 
-            echo '<script type="text/javascript">alert("Simulação salva com sucesso");</script>';
-            return redirect()
-                ->back()
-                ->with('success', '<strong>' . 'Simulação salva com sucesso! ' . '</strong>');
+            if ($verifyExists) {
+                Simulation::where('id_user', $idFromUser)->update($data);
+                // Simulation::where('id_user', Auth::user()->id)->update($data);
+                echo '<script type="text/javascript">alert("Simulação salva com sucesso");</script>';
+                return redirect()
+                    ->back()
+                    ->with('success', '<strong>' . 'Simulação salva com sucesso! ' . '</strong>');
+            }
+
+            Simulation::create($data);
         } else {
             return redirect()
                 ->back()

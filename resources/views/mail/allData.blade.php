@@ -21,13 +21,11 @@
 
     <h1>Simulações</h1>
     @foreach ($simulations as $simulations)
-        <h2>Simulações</h2>
         <h3>Id do usuário: {{$simulations->id_user}}</h3>
         <h3>Valor pretendido: {{ $simulations->pretended_value }}</h3>
         <h3>Parcelas: {{ $simulations->pretended_deadline }}</h3>
-        <h3>Valor total com juros: {{ $simulations->pretended_value }}</h3>
-        <h2>------------------------------------------------------</h2> <br />
-
+        <h3>Valor total com juros: {{ $simulations->increased_value }}</h3>
+        <h2>*******************************************************</h2> <br />
     @endforeach
 
 </body>

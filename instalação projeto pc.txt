@@ -1,10 +1,10 @@
-lonando um projeto e instalando o Laravel
-Vou novamente considerar que você esteja rodando um sistema operacional Linux e com o git instalado, faça o seguinte:
+clonando um projeto e instalando o Laravel
 
 Clone o projeto
 git clone git@github.com:seuprojeto
 
 Acesse o projeto
+
 cd seuprojeto
 
 Instale as dependências e o framework
